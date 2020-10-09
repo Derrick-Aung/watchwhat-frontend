@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const findOrCreate = require('mongoose-findorcreate');
 
 const PollSchema = new Schema({
   movieId: {
@@ -25,5 +26,6 @@ const PollSchema = new Schema({
   },
 });
 
+PollSchema.plugin(findOrCreate);
 const PollModel = mongoose.model('Poll', PollSchema);
 module.exports = PollModel;
