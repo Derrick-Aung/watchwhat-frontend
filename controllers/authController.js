@@ -12,9 +12,9 @@ module.exports.requireAuth = async (req, res, next) => {
 };
 
 module.exports.register = async (req, res, next) => {
-  const { fullName, email, password, password2 } = req.body;
+  const { username, email, password, password2 } = req.body;
 
-  if (!fullName || !email || !password || !password2) {
+  if (!username || !email || !password || !password2) {
     return res.status(400).send({ error: 'Please fill in all fields' });
   }
 
@@ -27,7 +27,7 @@ module.exports.register = async (req, res, next) => {
   }
 
   const newUser = new User({
-    fullName,
+    username,
     email,
     password,
   });
@@ -40,7 +40,7 @@ module.exports.register = async (req, res, next) => {
 
     bcrypt.genSalt(10, (err, salt) =>
       bcrypt.hash(password, salt, async (err, hash) => {
-        await new User({ fullName, email, password: hash }).save();
+        await new User({ username, email, password: hash }).save();
       })
     );
 
