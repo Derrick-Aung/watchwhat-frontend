@@ -1,6 +1,6 @@
 const constants = {
   // the closer component is primary
-  defaultPrimarySurfaceColor: '#121212',
+  defaultPrimarySurfaceColor: '#1f1f1f',
   defaultSecondarySurfaceColor: '#121212',
   accentColorPrimary: '#03dac5',
   accentColorSecondary: '#bb86fc',
@@ -9,6 +9,7 @@ const constants = {
   textColorMuted: '',
   colorSuccess: '#66BB6A',
   colorDanger: '#ff4c4c',
+  goldenYellow: '#FFDF00',
   tableHeaderFillColor: 'rgba(0, 0, 0, 0.3)',
   tableOddRowFillColor: 'rgba(255, 255, 255, .019)',
   tableEvenRowFillColor: 'rgba(0, 0, 0, .019)',
