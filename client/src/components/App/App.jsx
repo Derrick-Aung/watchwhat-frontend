@@ -6,9 +6,10 @@ import styled from 'styled-components';
 import constants from '../constants';
 import GlobalStyle from './GlobalStyle';
 import Header from '../Header/Header';
+import categories from '../../utils/requestCategory';
 import LoginPage from '../../pages/LoginPage';
 import RegisterPage from '../../pages/RegisterPage';
-import MovieDetailPage from '../../pages/MovieDetailPage';
+import MovieListPage from '../../pages/MovieListPage';
 
 const StyledDiv = styled.div`
 background-image: url("/assets/dashboard-background.jpg")
@@ -24,7 +25,19 @@ const ContainerWithHeader = () => {
   return (
     <>
       <Header />
-      <Route exact path="/" component={MovieDetailPage} />
+      <Route exact path="/" component={MovieListPage} />
+      <Route
+        path="/trending"
+        render={(props) => (
+          <MovieListPage {...props} category={categories.TRENDING} />
+        )}
+      />
+      <Route
+        path="/upcoming"
+        render={(props) => (
+          <MovieListPage {...props} category={categories.UPCOMING} />
+        )}
+      />
     </>
   );
 };
