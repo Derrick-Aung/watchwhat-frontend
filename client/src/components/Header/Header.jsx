@@ -1,21 +1,24 @@
 import {
+  List,
+  ListItem,
   IconButton,
   SwipeableDrawer,
   AppBar,
   Toolbar,
   Typography,
   Button,
+  ListItemText,
 } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState } from 'react';
 import { Menu as MenuIcon } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import constants from '../constants';
 import styled from 'styled-components';
 import { logout } from '../../redux/user/userActions';
 
 const AppBarHeader = styled(AppBar)`
-  background-color: #2b2b2b !important;
+  background-color: ${constants.defaultPrimarySurfaceColor} !important;
   color: #ffffff !important;
 `;
 
@@ -31,7 +34,9 @@ const DrawerContent = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const StyledLink = styled(Link)`
+
+const DrawerLink = styled(Link)`
+  color: ${constants.primaryTextColorLight} !important;
   text-decoration: none;
 
   &:focus,
@@ -43,18 +48,46 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const drawerMainPages = [
+  {
+    key: 'trending',
+    to: '/trending',
+    label: 'Trending',
+  },
+  {
+    key: 'upcoming',
+    to: '/upcoming',
+    label: 'Upcoming',
+  },
+  {
+    key: 'poll',
+    to: '/poll',
+    label: 'Poll',
+  },
+];
+
+const genrePages = [
+  {
+    key: 'trending',
+    to: '/trending',
+    label: 'Trending',
+  },
+  {
+    key: 'trending',
+    to: '/trending',
+    label: 'Trending',
+  },
+  {
+    key: 'trending',
+    to: '/trending',
+    label: 'Trending',
+  },
+];
+
 const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [drawerIsOpen, setDrawerOpen] = useState(false);
-
-  const drawerPages = [
-    {
-      key: 'dashboard',
-      to: '/dashboard',
-      label: 'Dashboard',
-    },
-  ];
 
   const LoginButton = () => (
     <Button
@@ -92,7 +125,7 @@ const Header = () => {
         >
           <MenuIcon />
         </IconButton>
-        <Button color="primary" component={Link} to={'/'}>
+        <Button color="primary" component={NavLink} to={'/'}>
           WatchWhat
         </Button>
         <AuthButton></AuthButton>
@@ -102,7 +135,17 @@ const Header = () => {
         onOpen={() => setDrawerOpen(true)}
         onClose={() => setDrawerOpen(false)}
       >
-        <DrawerContent></DrawerContent>
+        <DrawerContent>
+          <List>
+            {drawerMainPages.map((page) => (
+              <DrawerLink key={`drawer__${page.key}`} to={page.to}>
+                <ListItem button onClick={() => setDrawerOpen(false)}>
+                  <ListItemText primary={page.label} />
+                </ListItem>
+              </DrawerLink>
+            ))}
+          </List>
+        </DrawerContent>
       </SwipeableDrawer>
     </AppBarHeader>
   );
