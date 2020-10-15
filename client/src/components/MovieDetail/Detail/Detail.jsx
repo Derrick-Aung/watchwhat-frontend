@@ -58,16 +58,16 @@ const Detail = ({
         <div>
           <Genres genres={genres} style={{ marginTop: '1rem' }} />
         </div>
-        <MetaData
-          title="Release Date"
-          content={release_date}
-          style={{ marginTop: '1rem' }}
-        />
-        <MetaData
-          title="Budget"
-          content={budget}
-          style={{ marginTop: '0.2rem' }}
-        />
+
+        <FlexCenterDiv style={{ marginTop: '1rem' }}>
+          <MetaData
+            title="Release Date"
+            content={release_date}
+            style={{ marginRight: '1.4rem' }}
+          />
+          <MetaData title="Budget" content={budget} />
+        </FlexCenterDiv>
+
         <MetaData
           title="Overview"
           content={overview}
