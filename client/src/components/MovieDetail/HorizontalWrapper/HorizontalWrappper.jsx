@@ -15,7 +15,7 @@ const ContentDiv = styled.div`
 
 const BackdropDiv = styled.div`
   width: 70%;
-  background-color: blue;
+  background-color: black;
   background-image: url(${({ imageLink }) => imageLink});
   background-position: center center;
   background-repeat: no-repeat;
