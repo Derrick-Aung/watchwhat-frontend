@@ -4,15 +4,12 @@ import { TMDB_IMG_URL_500, DEFAULT_POSTER_PATH } from '../../config';
 import {
   Card,
   CardMedia,
-  CardHeader,
-  Avatar,
-  IconButton,
-  MoreVert,
   Typography,
-  CardContent,
+  Link as MuiLink,
 } from '@material-ui/core';
 import constants from '../constants';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
+import { Link } from 'react-router-dom';
 
 const StyledDiv = styled.div`
   display: flex;
@@ -26,17 +23,19 @@ const MovieCard = ({ id, title, poster_path, vote_average }) => {
     : `${process.env.PUBLIC_URL}${DEFAULT_POSTER_PATH}`;
 
   return (
-    <Card>
-      <CardMedia title={{ title }}>
-        <img src={poster_img} alt="" style={{ width: '100%' }} />
-      </CardMedia>
-      <StyledDiv>
-        <StarRoundedIcon
-          style={{ color: `${constants.goldenYellow}`, marginRight: '4px' }}
-        />
-        <Typography>{vote_average}</Typography>
-      </StyledDiv>
-    </Card>
+    <MuiLink underline="none" component={Link} to={`/movie/${id}`}>
+      <Card>
+        <CardMedia title={{ title }}>
+          <img src={poster_img} alt="" style={{ width: '100%' }} />
+        </CardMedia>
+        <StyledDiv>
+          <StarRoundedIcon
+            style={{ color: `${constants.goldenYellow}`, marginRight: '4px' }}
+          />
+          <Typography>{vote_average}</Typography>
+        </StyledDiv>
+      </Card>
+    </MuiLink>
   );
 };
 
