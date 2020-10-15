@@ -10,6 +10,7 @@ import categories from '../../utils/requestCategory';
 import LoginPage from '../../pages/LoginPage';
 import RegisterPage from '../../pages/RegisterPage';
 import MovieListPage from '../../pages/MovieListPage';
+import MovieDetailPage from '../../pages/MovieDetailPage';
 
 const StyledDiv = styled.div`
 background-image: url("/assets/dashboard-background.jpg")
@@ -38,6 +39,7 @@ const ContainerWithHeader = () => {
           <MovieListPage {...props} category={categories.UPCOMING} />
         )}
       />
+      <Route exact path="/movie/:movieId" component={MovieDetailPage} />
     </>
   );
 };
