@@ -6,6 +6,7 @@ const constants = {
   accentColorSecondary: '#bb86fc',
   primaryTextColorLight: 'rgba(255, 255, 255, 0.87)',
   primaryTextColorDark: 'rgba(0, 0, 0, 0.87)',
+  primaryTextColorMuted: 'rgba(150, 150, 150)',
   textColorMuted: '',
   colorSuccess: '#66BB6A',
   colorDanger: '#ff4c4c',

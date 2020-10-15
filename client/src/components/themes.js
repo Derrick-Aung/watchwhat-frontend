@@ -11,4 +11,7 @@ export const theme = createMuiTheme({
     },
     type: 'dark',
   },
+  typography: {
+    fontFamily: `${constants.primaryFont}`,
+  },
 });
