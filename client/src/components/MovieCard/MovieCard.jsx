@@ -12,7 +12,7 @@ import {
   CardContent,
 } from '@material-ui/core';
 import constants from '../constants';
-import StarIcon from '@material-ui/icons/Star';
+import StarRoundedIcon from '@material-ui/icons/StarRounded';
 
 const StyledDiv = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ const MovieCard = ({ id, title, poster_path, vote_average }) => {
         <img src={poster_img} alt="" style={{ width: '100%' }} />
       </CardMedia>
       <StyledDiv>
-        <StarIcon
+        <StarRoundedIcon
           style={{ color: `${constants.goldenYellow}`, marginRight: '4px' }}
         />
         <Typography>{vote_average}</Typography>
