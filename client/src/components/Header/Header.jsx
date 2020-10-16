@@ -16,6 +16,7 @@ import { Link, NavLink } from 'react-router-dom';
 import constants from '../constants';
 import styled from 'styled-components';
 import { logout } from '../../redux/user/userActions';
+import SearchBox from '../SearchBox/SearchBox';
 
 const AppBarHeader = styled(AppBar)`
   background-color: ${constants.defaultPrimarySurfaceColor} !important;
@@ -33,6 +34,13 @@ const DrawerContent = styled.div`
   background-color: ${constants.defaultPrimarySurfaceColor} !important;
   display: flex;
   flex-direction: column;
+`;
+
+const MarginRightFlexDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: 16px;
 `;
 
 const DrawerLink = styled(Link)`
@@ -90,20 +98,13 @@ const Header = () => {
   const [drawerIsOpen, setDrawerOpen] = useState(false);
 
   const LoginButton = () => (
-    <Button
-      style={{ marginLeft: 'auto' }}
-      color="primary"
-      variant="outlined"
-      component={Link}
-      to={'/login'}
-    >
+    <Button color="primary" variant="outlined" component={Link} to={'/login'}>
       Login
     </Button>
   );
 
   const LogoutButton = () => (
     <Button
-      style={{ marginLeft: 'auto' }}
       color="primary"
       variant="outlined"
       component={Link}
@@ -128,6 +129,9 @@ const Header = () => {
         <Button color="primary" component={NavLink} to={'/'}>
           WatchWhat
         </Button>
+        <MarginRightFlexDiv>
+          <SearchBox />
+        </MarginRightFlexDiv>
         <AuthButton></AuthButton>
       </StyledToolbar>
       <SwipeableDrawer
