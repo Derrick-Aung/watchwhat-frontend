@@ -13,6 +13,7 @@
 	"author": "Derrick Aung Khant",
 	"license": "ISC",
 	"dependencies": {
+		"@material-ui/lab": "^4.0.0-alpha.56",
 		"bcryptjs": "^2.4.3",
 		"body-parser": "^1.19.0",
 		"cors": "^2.8.5",
