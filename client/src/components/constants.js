@@ -1,9 +1,10 @@
 const constants = {
   // the closer component is primary
+  SurfaceColorClosest: '#2b2b2b',
   defaultPrimarySurfaceColor: '#1f1f1f',
   defaultSecondarySurfaceColor: '#121212',
   accentColorPrimary: '#03dac5',
-  accentColorSecondary: '#bb86fc',
+  accentColorSecondary: '#ff8880',
   primaryTextColorLight: 'rgba(255, 255, 255, 0.87)',
   primaryTextColorDark: 'rgba(0, 0, 0, 0.87)',
   primaryTextColorMuted: 'rgba(150, 150, 150)',
