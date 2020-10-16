@@ -11,6 +11,7 @@ import LoginPage from '../../pages/LoginPage';
 import RegisterPage from '../../pages/RegisterPage';
 import MovieListPage from '../../pages/MovieListPage';
 import MovieDetailPage from '../../pages/MovieDetailPage';
+import Snackbar from '../Snackbar/Snackbar';
 
 const StyledDiv = styled.div`
 background-image: url("/assets/dashboard-background.jpg")
@@ -64,6 +65,7 @@ const App = () => {
           <Route component={ContainerWithHeader} />
         </Switch>
       </StyledDiv>
+      <Snackbar />
     </ThemeProvider>
   );
 };
