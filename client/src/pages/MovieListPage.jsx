@@ -12,16 +12,18 @@ const PageContent = styled.div`
   padding-bottom: 2rem;
 `;
 
-//TODO pageNum from params
+// TODO pageNum from params
+// TODO if user typed in the search detect
 
 const MovieDetailPage = ({ category = categories.TRENDING }) => {
   const dispatch = useDispatch();
   const movies = useSelector((state) => state.movies.data);
+  const query = useSelector((state) => state.search.query);
 
   useEffect(() => {
-    dispatch(fetchMovies(category, 1));
+    dispatch(fetchMovies(category, 1, query));
     return () => {};
-  }, []);
+  }, [query]);
 
   return (
     <PageContent>
