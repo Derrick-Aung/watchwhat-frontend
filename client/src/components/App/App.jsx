@@ -28,15 +28,24 @@ const ContainerWithHeader = () => {
       <Header />
       <Route exact path="/" component={MovieListPage} />
       <Route
+        exact
         path="/trending"
         render={(props) => (
           <MovieListPage {...props} category={categories.TRENDING} />
         )}
       />
       <Route
+        exact
         path="/upcoming"
         render={(props) => (
           <MovieListPage {...props} category={categories.UPCOMING} />
+        )}
+      />
+      <Route
+        exact
+        path="/search"
+        render={(props) => (
+          <MovieListPage {...props} category={categories.SEARCH} />
         )}
       />
       <Route exact path="/movie/:movieId" component={MovieDetailPage} />
