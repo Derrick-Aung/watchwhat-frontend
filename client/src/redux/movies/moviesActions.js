@@ -3,7 +3,9 @@ import moviesTypes from './moviesTypes';
 import categories from '../../utils/requestCategory';
 import { TMDB_API_URL, TMDB_API_KEY } from '../../config';
 
-export const fetchMovies = (category, pageNum = 1) => async (dispatch) => {
+export const fetchMovies = (category, pageNum = 1, query) => async (
+  dispatch
+) => {
   try {
     dispatch({ type: moviesTypes.FETCH_MOVIES_START });
 
@@ -33,6 +35,18 @@ export const fetchMovies = (category, pageNum = 1) => async (dispatch) => {
             api_key: TMDB_API_KEY,
             language: 'en-US',
             page: pageNum,
+          },
+        });
+        break;
+      case categories.SEARCH:
+        // TODO validate query string here?
+        url = `${TMDB_API_URL}search/movie`;
+        response = await axios(url, {
+          method: 'GET',
+          params: {
+            query: query,
+            api_key: TMDB_API_KEY,
+            language: 'en-US',
           },
         });
         break;
