@@ -4,6 +4,8 @@ import categories from '../utils/requestCategory';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies } from '../redux/movies/moviesActions';
 import MovieList from '../components/MovieList/MovieList';
+import { Typography } from '@material-ui/core';
+import constants from '../components/constants';
 
 const PageContent = styled.div`
   width: 60%;
@@ -13,7 +15,6 @@ const PageContent = styled.div`
 `;
 
 // TODO pageNum from params
-// TODO if user typed in the search detect
 
 const MovieDetailPage = ({ category = categories.TRENDING }) => {
   const dispatch = useDispatch();
@@ -27,7 +28,14 @@ const MovieDetailPage = ({ category = categories.TRENDING }) => {
 
   return (
     <PageContent>
-      <h1>{category}</h1>
+      <Typography
+        component="h1"
+        variant="h4"
+        color="primary"
+        style={{ marginTop: '1rem', marginBottom: '1rem' }}
+      >
+        {category}
+      </Typography>
       <MovieList movies={movies} />
     </PageContent>
   );
