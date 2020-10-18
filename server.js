@@ -10,6 +10,9 @@ const session = require('express-session');
 
 const apiRouter = require('./routes');
 
+// Initiate Cron Jobs
+const workers = require('./workers');
+
 // MongoDb Connect
 (async function () {
   try {
