@@ -1,8 +1,8 @@
 import snackbarTypes from './snackbarTypes.js';
 
 export const INITIAL_STATE = {
-  open: true,
-  message: 'default string',
+  open: false,
+  message: 'Default',
   // other types include error, info, warning
   type: 'success',
 };
