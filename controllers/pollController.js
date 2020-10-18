@@ -1,5 +1,5 @@
 const Poll = require('../models/Poll');
-// const { getPollExpiry } = require('../workers/poll-worker');
+const { getPollExpiry } = require('../workers/index');
 
 module.exports.retrieveSinglePoll = async (req, res, next) => {
   try {
@@ -91,9 +91,6 @@ module.exports.votePoll = async (req, res, next) => {
 };
 
 module.exports.retrievePollExpiry = (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    // TODO
-    // poll_expire: getPollExpiry(),
-  });
+  const date = getPollExpiry(new Date());
+  res.status(200).json(date);
 };
