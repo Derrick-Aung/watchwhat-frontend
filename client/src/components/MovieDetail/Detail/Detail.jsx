@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import constants from '../../constants';
 import { Typography } from '@material-ui/core';
 import RatingRuntime from '../../RatingRuntime/RatingRuntime';
-import Vote from '../../Vote/Vote';
 
 const DetailDiv = styled.div`
   padding: 30px;
@@ -51,13 +50,7 @@ const Detail = ({
     <DetailDiv>
       <Typography variant="h3" component="h1">
         <Title>{title}</Title>
-        <Vote
-          style={{
-            position: 'fixed',
-            bottom: '16px',
-            right: '16px',
-          }}
-        />
+
         <RatingRuntime
           style={{ marginTop: '1rem' }}
           runtime={runtime}
@@ -73,7 +66,7 @@ const Detail = ({
             content={release_date}
             style={{ marginRight: '1.4rem' }}
           />
-          <MetaData title="Budget" content={budget} />
+          <MetaData title="Budget" content={budget || 'Unavailable'} />
         </FlexCenterDiv>
 
         <MetaData
