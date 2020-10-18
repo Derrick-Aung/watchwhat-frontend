@@ -11,10 +11,10 @@ import LoginPage from '../../pages/LoginPage';
 import RegisterPage from '../../pages/RegisterPage';
 import MovieListPage from '../../pages/MovieListPage';
 import MovieDetailPage from '../../pages/MovieDetailPage';
+import PollPage from '../../pages/PollPage';
 import Snackbar from '../Snackbar/Snackbar';
 
 const StyledDiv = styled.div`
-background-image: url("/assets/dashboard-background.jpg")
   background-color: ${constants.defaultSecondarySurfaceColor} !important;
   height: 100%;
   flex-grow: 1;
@@ -50,6 +50,7 @@ const ContainerWithHeader = () => {
         )}
       />
       <Route exact path="/movie/:movieId" component={MovieDetailPage} />
+      <Route exact path="/poll" component={PollPage} />
     </>
   );
 };
