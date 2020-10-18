@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import constants from '../constants';
 import { showSnackbar } from '../../redux/snackbar/snackbarActions';
+import { postVote } from '../../redux/vote/voteActions';
 
 const VoteDiv = styled.div`
   background-color: ${constants.SurfaceColorClosest};
@@ -20,15 +21,27 @@ const RowDiv = styled.div`
   align-items: center;
 `;
 
-const Vote = ({ style }) => {
+const Vote = ({ movieId, style }) => {
   const user = useSelector((state) => state.user.currentUser);
+  const vote = useSelector((state) => state.vote);
   const dispatch = useDispatch();
 
   const handleVoteClick = (vote_type) => {
     if (!user) {
       dispatch(showSnackbar('Log in to vote'));
+      return;
     }
+    dispatch(postVote(movieId, 'up'));
   };
+
+  const voteCount = vote.data
+    ? vote.data.upvoters.length - vote.data.downvoters.length
+    : 0;
+
+  const upvoted =
+    vote.data && user ? vote.data.upvoters.includes(user._id) : false;
+  const downvoted =
+    vote.data && user ? vote.data.downvoters.includes(user._id) : false;
 
   return (
     <VoteDiv style={style}>
@@ -40,11 +53,15 @@ const Vote = ({ style }) => {
         Vote
       </Typography>
       <RowDiv>
-        <IconButton aria-label="upvote" onClick={() => handleVoteClick('up')}>
+        <IconButton
+          aria-label="upvote"
+          onClick={() => handleVoteClick('up')}
+          color={upvoted ? 'secondary' : undefined}
+        >
           <ThumbUpRoundedIcon />
         </IconButton>
         <Typography component="h3" variant="h6" color="secondary">
-          33
+          {voteCount}
         </Typography>
         <IconButton
           aria-label="downvote"
