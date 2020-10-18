@@ -26,12 +26,12 @@ const Vote = ({ movieId, style }) => {
   const vote = useSelector((state) => state.vote);
   const dispatch = useDispatch();
 
-  const handleVoteClick = (vote_type) => {
+  const handleVoteClick = (voteType) => {
     if (!user) {
       dispatch(showSnackbar('Log in to vote'));
       return;
     }
-    dispatch(postVote(movieId, 'up'));
+    dispatch(postVote(movieId, voteType, vote.data, user));
   };
 
   const voteCount = vote.data
@@ -66,6 +66,7 @@ const Vote = ({ movieId, style }) => {
         <IconButton
           aria-label="downvote"
           onClick={() => handleVoteClick('down')}
+          color={downvoted ? 'secondary' : undefined}
         >
           <ThumbDownRoundedIcon />
         </IconButton>

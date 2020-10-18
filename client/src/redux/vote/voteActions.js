@@ -21,15 +21,29 @@ export const fetchVote = (movieId) => async (dispatch) => {
   }
 };
 
-export const postVote = (movieId, voteType) => async (dispatch) => {
+export const postVote = (movieId, voteButtonType, vote, user) => async (
+  dispatch
+) => {
   try {
+    let voteType = '';
+    if (!vote) {
+      voteType = voteButtonType;
+    } else if (
+      (voteButtonType === 'up' && vote.upvoters.includes(user._id)) ||
+      (voteButtonType === 'down' && vote.downvoters.includes(user._id))
+    ) {
+      voteType = '';
+    } else {
+      voteType = voteButtonType;
+    }
+
     dispatch({ type: voteTypes.FETCH_VOTE_START });
 
     const url = `/api/poll/${movieId}`;
     const response = await axios(url, {
       method: 'POST',
       data: {
-        voteType: 'up',
+        voteType: voteType,
       },
     });
 
