@@ -1,14 +1,32 @@
 const Poll = require('../models/Poll');
 // const { getPollExpiry } = require('../workers/poll-worker');
 
+module.exports.retrieveSinglePoll = async (req, res, next) => {
+  try {
+    const { movieId } = req.params;
+
+    const poll = await Poll.findOne({ movieId });
+    res.status(200).json(poll);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports.retrievePollFeed = async (req, res, next) => {
   try {
-    const polls = await Poll.find();
-    res.json({
-      success: true,
-      count: polls.count,
-      data: polls,
-    });
+    const polls = await Poll.aggregate([
+      {
+        $addFields: {
+          votes: {
+            $subtract: [{ $size: '$upvoters' }, { $size: '$downvoters' }],
+          },
+        },
+      },
+      {
+        $sort: { votes: -1 },
+      },
+    ]).limit(10);
+    res.status(200).json(polls);
   } catch (error) {
     next(error);
   }
@@ -16,9 +34,8 @@ module.exports.retrievePollFeed = async (req, res, next) => {
 
 module.exports.votePoll = async (req, res, next) => {
   const _id = req.user._id;
-  const { movieId, voteType } = req.body;
-
-  console.log(req.body);
+  const { movieId } = req.params;
+  const { voteType } = req.body;
 
   try {
     const result = await Poll.findOrCreate({ movieId });
@@ -67,12 +84,7 @@ module.exports.votePoll = async (req, res, next) => {
       );
     }
 
-    console.log(data);
-
-    return res.status(200).json({
-      success: true,
-      data,
-    });
+    return res.status(200).send(data);
   } catch (error) {
     next(error);
   }
