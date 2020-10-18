@@ -25,7 +25,7 @@ module.exports.retrievePollFeed = async (req, res, next) => {
       {
         $sort: { votes: -1 },
       },
-    ]).limit(10);
+    ]).limit(20);
     res.status(200).json(polls);
   } catch (error) {
     next(error);
