@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies } from '../redux/movies/moviesActions';
 import MovieList from '../components/MovieList/MovieList';
 import { Typography } from '@material-ui/core';
-import constants from '../components/constants';
 
 const PageContent = styled.div`
   width: 60%;
