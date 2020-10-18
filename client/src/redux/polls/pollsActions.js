@@ -9,7 +9,6 @@ export const fetchPolls = (pageNum) => async (dispatch) => {
     const url = `/api/poll/feed`;
     const { data } = await axios(url, {
       method: 'GET',
-      no,
     });
 
     await Promise.all(
