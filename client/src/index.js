@@ -21,3 +21,9 @@ const app = (
 );
 
 ReactDOM.render(app, document.getElementById('root'));
+
+// Remove loader
+const loader = document.getElementById('loader');
+if (loader) {
+  loader.remove();
+}
