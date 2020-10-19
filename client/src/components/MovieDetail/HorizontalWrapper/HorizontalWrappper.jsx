@@ -32,10 +32,7 @@ const BackdropDiv = styled.div`
 `;
 
 // TODO check if its called render by convention instead
-const HorizontalWrappper = ({
-  children,
-  backdrop = 'https://image.tmdb.org/t/p/original/aO5ILS7qnqtFIprbJ40zla0jhpu.jpg',
-}) => {
+const HorizontalWrappper = ({ children, backdrop = '' }) => {
   return (
     <MainDiv>
       <ContentDiv>{children}</ContentDiv>
