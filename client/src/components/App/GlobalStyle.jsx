@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle([
   `
 #root {
     color: ${constants.primaryTextColorLight} !important;
+    width: 100%;
     height: 100%;
     background-color: ${constants.defaultSecondarySurfaceColor}!important;
     overflow-x: hidden;
