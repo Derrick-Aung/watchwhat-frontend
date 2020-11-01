@@ -10,13 +10,6 @@ import HorizontalWrappper from '../components/MovieDetail/HorizontalWrapper/Hori
 import Detail from '../components/MovieDetail/Detail/Detail';
 import Vote from '../components/Vote/Vote';
 
-const PageContent = styled.div`
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 2rem;
-`;
-
 const MovieDetailPage = () => {
   const dispatch = useDispatch();
   const { movieId } = useParams();
