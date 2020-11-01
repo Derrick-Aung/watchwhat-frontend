@@ -13,6 +13,11 @@ import MovieListPage from '../../pages/MovieListPage';
 import MovieDetailPage from '../../pages/MovieDetailPage';
 import PollPage from '../../pages/PollPage';
 import Snackbar from '../Snackbar/Snackbar';
+import {
+  retrieveTrending,
+  retrieveUpcoming,
+  retrieveSearch,
+} from '../../services/movieServices';
 
 const StyledDiv = styled.div`
   background-color: ${constants.defaultSecondarySurfaceColor} !important;
@@ -27,26 +32,48 @@ const ContainerWithHeader = () => {
   return (
     <>
       <Header />
-      <Route exact path="/" component={MovieListPage} />
+      <Route
+        exact
+        path="/"
+        render={(props) => (
+          <MovieListPage
+            {...props}
+            category={categories.TRENDING}
+            retriever={retrieveTrending}
+          />
+        )}
+      />
       <Route
         exact
         path="/trending"
         render={(props) => (
-          <MovieListPage {...props} category={categories.TRENDING} />
+          <MovieListPage
+            {...props}
+            category={categories.TRENDING}
+            retriever={retrieveTrending}
+          />
         )}
       />
       <Route
         exact
         path="/upcoming"
         render={(props) => (
-          <MovieListPage {...props} category={categories.UPCOMING} />
+          <MovieListPage
+            {...props}
+            category={categories.UPCOMING}
+            retriever={retrieveUpcoming}
+          />
         )}
       />
       <Route
         exact
         path="/search"
         render={(props) => (
-          <MovieListPage {...props} category={categories.SEARCH} />
+          <MovieListPage
+            {...props}
+            category={categories.SEARCH}
+            retriever={retrieveSearch}
+          />
         )}
       />
       <Route exact path="/movie/:movieId" component={MovieDetailPage} />

@@ -15,15 +15,15 @@ const PageContent = styled.div`
 
 // TODO pageNum from params
 
-const MovieDetailPage = ({ category = categories.TRENDING }) => {
+const MovieListPage = ({ retriever, category }) => {
   const dispatch = useDispatch();
   const movies = useSelector((state) => state.movies.data);
   const query = useSelector((state) => state.search.query);
 
   useEffect(() => {
-    dispatch(fetchMovies(category, 1, query));
+    dispatch(fetchMovies(retriever, 1, query));
     return () => {};
-  }, [query]);
+  }, [retriever, query]);
 
   return (
     <PageContent>
@@ -40,4 +40,4 @@ const MovieDetailPage = ({ category = categories.TRENDING }) => {
   );
 };
 
-export default MovieDetailPage;
+export default MovieListPage;
