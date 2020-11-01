@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, IconButton } from '@material-ui/core';
+import { Box, Typography, IconButton } from '@material-ui/core';
 import ThumbUpRoundedIcon from '@material-ui/icons/ThumbUpRounded';
 import ThumbDownRoundedIcon from '@material-ui/icons/ThumbDownRounded';
 import styled from 'styled-components';
@@ -45,31 +45,35 @@ const Vote = ({ movieId, style }) => {
 
   return (
     <VoteDiv style={style}>
-      <Typography
-        component="h3"
-        variant="h5"
-        style={{ color: constants.primaryTextColorMuted }}
-      >
+      <Typography component="h3" variant="h5" color="secondary">
         Vote
       </Typography>
       <RowDiv>
-        <IconButton
-          aria-label="upvote"
-          onClick={() => handleVoteClick('up')}
-          color={upvoted ? 'secondary' : undefined}
-        >
-          <ThumbUpRoundedIcon />
-        </IconButton>
-        <Typography component="h3" variant="h6" color="secondary">
-          {voteCount}
-        </Typography>
-        <IconButton
-          aria-label="downvote"
-          onClick={() => handleVoteClick('down')}
-          color={downvoted ? 'secondary' : undefined}
-        >
-          <ThumbDownRoundedIcon />
-        </IconButton>
+        {!vote.loading ? (
+          <>
+            <IconButton
+              aria-label="upvote"
+              onClick={() => handleVoteClick('up')}
+              color={upvoted ? 'secondary' : undefined}
+            >
+              <ThumbUpRoundedIcon />
+            </IconButton>
+            <Typography component="h3" variant="h6" color="secondary">
+              {voteCount}
+            </Typography>
+            <IconButton
+              aria-label="downvote"
+              onClick={() => handleVoteClick('down')}
+              color={downvoted ? 'secondary' : undefined}
+            >
+              <ThumbDownRoundedIcon />
+            </IconButton>
+          </>
+        ) : (
+          <Box p={1}>
+            <Typography variant="h6">Loading...</Typography>
+          </Box>
+        )}
       </RowDiv>
     </VoteDiv>
   );
