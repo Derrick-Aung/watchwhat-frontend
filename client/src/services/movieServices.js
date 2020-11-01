@@ -60,3 +60,21 @@ export const retrieveSearch = async (_, query) => {
     throw new Error('Something went wrong');
   }
 };
+
+export const retrieveGenre = async (pageNum, _, genreId) => {
+  try {
+    const url = `${TMDB_API_URL}discover/movie`;
+
+    const response = await axios(url, {
+      method: 'GET',
+      params: {
+        api_key: TMDB_API_KEY,
+        with_genres: genreId,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    throw new Error('Something went wrong');
+  }
+};

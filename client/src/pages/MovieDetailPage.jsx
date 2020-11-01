@@ -7,6 +7,7 @@ import constants from '../components/constants';
 import styled from 'styled-components';
 import { TMDB_IMG_URL_OG } from '../config';
 import HorizontalWrappper from '../components/MovieDetail/HorizontalWrapper/HorizontalWrappper';
+import VerticalWrapper from '../components/MovieDetail/VerticalWrapper/VerticalWrapper';
 import Detail from '../components/MovieDetail/Detail/Detail';
 import Vote from '../components/Vote/Vote';
 
@@ -25,7 +26,7 @@ const MovieDetailPage = () => {
   }, []);
 
   return (
-    <HorizontalWrappper backdrop={`${TMDB_IMG_URL_OG}${movie.backdrop_path}`}>
+    <VerticalWrapper backdrop={`${TMDB_IMG_URL_OG}${movie.backdrop_path}`}>
       <Detail {...movie} />
       <Vote
         movieId={movieId}
@@ -35,7 +36,7 @@ const MovieDetailPage = () => {
           right: '16px',
         }}
       />
-    </HorizontalWrappper>
+    </VerticalWrapper>
   );
 };
 

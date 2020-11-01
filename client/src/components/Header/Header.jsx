@@ -7,6 +7,8 @@ import {
   Toolbar,
   Typography,
   Button,
+  Divider,
+  Box,
   ListItemText,
 } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,6 +19,8 @@ import constants from '../constants';
 import styled from 'styled-components';
 import { logout } from '../../redux/user/userActions';
 import SearchBox from '../SearchBox/SearchBox';
+import { useMediaQuery } from 'react-responsive';
+import genres from '../../constants/genres';
 
 const AppBarHeader = styled(AppBar)`
   background-color: ${constants.defaultPrimarySurfaceColor} !important;
@@ -60,35 +64,17 @@ const drawerMainPages = [
   {
     key: 'trending',
     to: '/trending',
-    label: 'Trending',
+    label: 'trending',
   },
   {
     key: 'upcoming',
     to: '/upcoming',
-    label: 'Upcoming',
+    label: 'upcoming',
   },
   {
     key: 'poll',
     to: '/poll',
-    label: 'Poll',
-  },
-];
-
-const genrePages = [
-  {
-    key: 'trending',
-    to: '/trending',
-    label: 'Trending',
-  },
-  {
-    key: 'trending',
-    to: '/trending',
-    label: 'Trending',
-  },
-  {
-    key: 'trending',
-    to: '/trending',
-    label: 'Trending',
+    label: 'poll',
   },
 ];
 
@@ -97,18 +83,29 @@ const Header = () => {
   const user = useSelector((state) => state.user);
   const [drawerIsOpen, setDrawerOpen] = useState(false);
 
-  const LoginButton = () => (
-    <Button color="primary" variant="outlined" component={Link} to={'/login'}>
+  const isPhone = useMediaQuery({
+    query: '(max-width: 500px)',
+  });
+
+  const LoginButton = ({ style }) => (
+    <Button
+      color="primary"
+      variant="outlined"
+      component={Link}
+      to={'/login'}
+      style={style}
+    >
       Login
     </Button>
   );
 
-  const LogoutButton = () => (
+  const LogoutButton = ({ style }) => (
     <Button
       color="primary"
       variant="outlined"
       component={Link}
       onClick={() => dispatch(logout())}
+      style={style}
     >
       Logout
     </Button>
@@ -129,10 +126,12 @@ const Header = () => {
         <Button color="primary" component={NavLink} to={'/'}>
           WatchWhat
         </Button>
-        <MarginRightFlexDiv>
-          <SearchBox />
-        </MarginRightFlexDiv>
-        <AuthButton></AuthButton>
+        {isPhone || (
+          <MarginRightFlexDiv>
+            <SearchBox />
+          </MarginRightFlexDiv>
+        )}
+        <AuthButton style={isPhone ? { marginLeft: 'auto' } : {}}></AuthButton>
       </StyledToolbar>
       <SwipeableDrawer
         open={drawerIsOpen}
@@ -140,11 +139,31 @@ const Header = () => {
         onClose={() => setDrawerOpen(false)}
       >
         <DrawerContent>
+          <Box px={2} py={1}>
+            {isPhone && <SearchBox />}
+          </Box>
+          <Divider />
           <List>
             {drawerMainPages.map((page) => (
               <DrawerLink key={`drawer__${page.key}`} to={page.to}>
                 <ListItem button onClick={() => setDrawerOpen(false)}>
                   <ListItemText primary={page.label} />
+                </ListItem>
+              </DrawerLink>
+            ))}
+            <Divider />
+            <ListItem>
+              <Typography color="primary" variant="h5">
+                Genres
+              </Typography>
+            </ListItem>
+            {genres.map((genre) => (
+              <DrawerLink
+                key={`drawer__${genre.id}`}
+                to={`/genre/${genre.name}`}
+              >
+                <ListItem button onClick={() => setDrawerOpen(false)}>
+                  <ListItemText primary={genre.name} />
                 </ListItem>
               </DrawerLink>
             ))}

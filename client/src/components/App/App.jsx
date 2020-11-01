@@ -17,6 +17,7 @@ import {
   retrieveTrending,
   retrieveUpcoming,
   retrieveSearch,
+  retrieveGenre,
 } from '../../services/movieServices';
 import NotFoundPage from '../../pages/404Page';
 
@@ -75,6 +76,17 @@ const ContainerWithHeader = () => {
               {...props}
               category={categories.SEARCH}
               retriever={retrieveSearch}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/genre/:genre"
+          render={(props) => (
+            <MovieListPage
+              {...props}
+              category={categories.GENRE}
+              retriever={retrieveGenre}
             />
           )}
         />
