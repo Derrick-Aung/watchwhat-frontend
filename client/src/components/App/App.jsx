@@ -18,6 +18,7 @@ import {
   retrieveUpcoming,
   retrieveSearch,
 } from '../../services/movieServices';
+import NotFoundPage from '../../pages/404Page';
 
 const StyledDiv = styled.div`
   background-color: ${constants.defaultSecondarySurfaceColor} !important;
@@ -32,52 +33,55 @@ const ContainerWithHeader = () => {
   return (
     <>
       <Header />
-      <Route
-        exact
-        path="/"
-        render={(props) => (
-          <MovieListPage
-            {...props}
-            category={categories.TRENDING}
-            retriever={retrieveTrending}
-          />
-        )}
-      />
-      <Route
-        exact
-        path="/trending"
-        render={(props) => (
-          <MovieListPage
-            {...props}
-            category={categories.TRENDING}
-            retriever={retrieveTrending}
-          />
-        )}
-      />
-      <Route
-        exact
-        path="/upcoming"
-        render={(props) => (
-          <MovieListPage
-            {...props}
-            category={categories.UPCOMING}
-            retriever={retrieveUpcoming}
-          />
-        )}
-      />
-      <Route
-        exact
-        path="/search"
-        render={(props) => (
-          <MovieListPage
-            {...props}
-            category={categories.SEARCH}
-            retriever={retrieveSearch}
-          />
-        )}
-      />
-      <Route exact path="/movie/:movieId" component={MovieDetailPage} />
-      <Route exact path="/poll" component={PollPage} />
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={(props) => (
+            <MovieListPage
+              {...props}
+              category={categories.TRENDING}
+              retriever={retrieveTrending}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/trending"
+          render={(props) => (
+            <MovieListPage
+              {...props}
+              category={categories.TRENDING}
+              retriever={retrieveTrending}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/upcoming"
+          render={(props) => (
+            <MovieListPage
+              {...props}
+              category={categories.UPCOMING}
+              retriever={retrieveUpcoming}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/search"
+          render={(props) => (
+            <MovieListPage
+              {...props}
+              category={categories.SEARCH}
+              retriever={retrieveSearch}
+            />
+          )}
+        />
+        <Route exact path="/movie/:movieId" component={MovieDetailPage} />
+        <Route exact path="/poll" component={PollPage} />
+        <Route component={NotFoundPage} />
+      </Switch>
     </>
   );
 };
