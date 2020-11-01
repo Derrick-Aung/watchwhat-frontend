@@ -35,7 +35,7 @@ const MovieCard = ({ id, title, poster_path, vote_average, ww_votes }) => {
             style={{ color: `${constants.goldenYellow}`, marginRight: '6px' }}
           />
           <Typography>{vote_average}</Typography>
-          {ww_votes && (
+          {ww_votes ? (
             <>
               <ThumbUpRoundedIcon
                 style={{
@@ -46,7 +46,7 @@ const MovieCard = ({ id, title, poster_path, vote_average, ww_votes }) => {
               />
               <Typography>{ww_votes}</Typography>
             </>
-          )}
+          ) : null}
         </StyledDiv>
       </Card>
     </MuiLink>
