@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { TMDB_IMG_URL_500, DEFAULT_POSTER_PATH } from '../../config';
 import {
   Card,
@@ -19,6 +19,13 @@ const StyledDiv = styled.div`
   padding: 8px;
 `;
 
+const StyledImage = styled.img`
+  transition: transform 1s, filter 0.5s ease-out;
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
 const MovieCard = ({ id, title, poster_path, vote_average, ww_votes }) => {
   const poster_img = poster_path
     ? TMDB_IMG_URL_500 + poster_path
@@ -27,8 +34,8 @@ const MovieCard = ({ id, title, poster_path, vote_average, ww_votes }) => {
   return (
     <MuiLink underline="none" component={Link} to={`/movie/${id}`}>
       <Card>
-        <CardMedia title={{ title }}>
-          <img src={poster_img} alt="" style={{ width: '100%' }} />
+        <CardMedia title={{ title }} style={{ overflow: 'hidden' }}>
+          <StyledImage src={poster_img} alt="" style={{ width: '100%' }} />
         </CardMedia>
         <StyledDiv>
           <StarRoundedIcon
