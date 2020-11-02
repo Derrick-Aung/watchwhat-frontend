@@ -26,6 +26,7 @@ jobs:
         npm run build
       env:
         CI: false
+        REACT_APP_TMDB_API_KEY: ${{ secrets.REACT_APP_TMDB_API_KEY }}  
     - name: Deploy to S3
       uses: jakejarvis/s3-sync-action@master
       with:
